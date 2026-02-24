@@ -1,1 +1,37 @@
-<p>formulario-estudiante works!</p>
+
+<div class="container">
+  <h2>Registrar Nuevo Estudiante</h2>
+
+  <form [formGroup]="estudianteForm" (ngSubmit)="guardarEstudiante()" class="formulario">
+
+    <mat-form-field appearance="outline">
+      <mat-label>Identificacion</mat-label>
+      <input matInput formControlName="id" placeholder="Identificacion del estudiante">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="nombre" placeholder="Nombre">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Apellido</mat-label>
+      <input matInput formControlName="apellido" placeholder="Apellido">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Grupo</mat-label>
+      <input matInput type="number" formControlName="grupo" placeholder="numero de grupo">
+    </mat-form-field>
+
+    <div class="acciones">
+      <button mat-raised-button color="primary" type="submit" [disabled]="estudianteForm.invalid">
+        Guardar Estudiante
+      </button>
+      <button mat-button type="button" (click)="cancelar()">
+        Cancelar
+      </button>
+    </div>
+
+  </form>
+</div>

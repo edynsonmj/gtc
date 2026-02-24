@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center; 
+  min-height: 50vh;
+  padding: 10px;
+}
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 450px;
+  gap: 15px; 
+  margin: 0 auto; 
+}
+
+mat-form-field{
+    width: 100%;
+    display: block;
+}
+
+.acciones {
+  display: flex;
+  flex-direction: column; 
+  gap: 10px;
+  margin-top: 15px;
+}
