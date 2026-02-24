@@ -30,7 +30,6 @@ export class ListaEstudiante {
     this.estudianteService.getEstudiante().subscribe({
       next: (data)=>{
         this.estudiantes.set(data);
-        console.log(data);
       },
       error:(err)=>{
         this.errorMessage = 'Error al cargar estudiantes:'+err.message;

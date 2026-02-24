@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.prueba.gtc.gtc_back_prueba.configuration.exceptionController.exceptions.EliminacionFallidaNoExistente;
 import com.prueba.gtc.gtc_back_prueba.configuration.exceptionController.exceptions.ErrorGenerico;
 import com.prueba.gtc.gtc_back_prueba.configuration.exceptionController.exceptions.InsercionFallidaExistente;
 import com.prueba.gtc.gtc_back_prueba.data.entities.EstudianteEntity;
@@ -84,7 +85,7 @@ public class EstudianteService{
     public Boolean eliminarEstudiante(String id){
         Optional<EstudianteEntity> entidad = estudianteRepository.findById(id);
         if(entidad.isEmpty()){
-            return false;
+            throw new EliminacionFallidaNoExistente();
         }
         EstudianteEntity entidadEliminar = entidad.get();
         estudianteRepository.delete(entidadEliminar);

@@ -6,6 +6,7 @@ import { Estudiante } from '../service/estudiante';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { error } from 'console';
 
 @Component({
   standalone:true,
@@ -41,10 +42,20 @@ export class FormularioEstudiante {
           console.log('Estudiante guardado con éxito');
           this.router.navigate(['/estudiantes']);
         },
-        error: (err) => console.error('Error al guardar:', err)
-      });
-    }
-  }
+        
+        error: (err) => {
+          const errorBackend = err.error; 
+  
+        
+        const mensajeAMostrar = errorBackend?.mensaje || "Error inesperado";
+
+        alert("Error del servidor: " + mensajeAMostrar);
+        
+        
+        console.log('Objeto de error completo:', errorBackend);}
+            });
+          }
+        }
 
   cancelar(): void {
     this.router.navigate(['/estudiantes']);

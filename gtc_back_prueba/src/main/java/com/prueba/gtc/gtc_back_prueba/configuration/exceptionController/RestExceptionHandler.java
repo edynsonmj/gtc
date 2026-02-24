@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.prueba.gtc.gtc_back_prueba.configuration.exceptionController.errorFormat.ErrorData;
 import com.prueba.gtc.gtc_back_prueba.configuration.exceptionController.errorFormat.ErrorUtils;
+import com.prueba.gtc.gtc_back_prueba.configuration.exceptionController.exceptions.EliminacionFallidaNoExistente;
 import com.prueba.gtc.gtc_back_prueba.configuration.exceptionController.exceptions.ErrorGenerico;
 import com.prueba.gtc.gtc_back_prueba.configuration.exceptionController.exceptions.InsercionFallidaExistente;
 
@@ -62,5 +63,16 @@ public class RestExceptionHandler {
             error.setUrl(req.getRequestURL().toString());
             error.setMetodo(req.getMethod());
             return new ResponseEntity<ErrorData>(error,HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(EliminacionFallidaNoExistente.class)
+        public ResponseEntity<ErrorData> GenericException(final HttpServletRequest req, final EliminacionFallidaNoExistente ex){
+            String codigo = ex.getCodigo();
+            String mensaje = String.format("%s, %s", ex.getLlaveMensaje(), ex.getMessage());
+            Integer codigoHttp = HttpStatus.BAD_REQUEST.value();
+            final ErrorData error = ErrorUtils.crearError(codigo, mensaje, codigoHttp);
+            error.setUrl(req.getRequestURL().toString());
+            error.setMetodo(req.getMethod());
+            return new ResponseEntity<ErrorData>(error,HttpStatus.BAD_REQUEST);
     }
 }

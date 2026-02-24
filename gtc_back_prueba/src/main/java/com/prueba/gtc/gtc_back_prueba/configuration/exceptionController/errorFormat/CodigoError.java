@@ -9,7 +9,9 @@ public enum CodigoError {
 
         ERROR_GENERICO("GC-0001", "ERROR GENERICO"),
         INSERCION_FALLIDA_EXISTENTE("GC-0002", "Fallo la insercion, ya existe es mismo registro en el sistema"),
-        INSERCION_FALLIDA("GC-0003", "El elemento no pudo ser insertado en la base de datos");
+        INSERCION_FALLIDA("GC-0003", "El elemento no pudo ser insertado en la base de datos"),
+        ELIMINACION_FALLIDA_NO_EXISTE("GC-004", "No existe el elemento a eliminar");
+
         
         private final String codigo;
         private final String llaveMensaje;
