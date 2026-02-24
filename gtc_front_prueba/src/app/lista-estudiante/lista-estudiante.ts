@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { EstudianteModelo } from '../models/estudiante';
 import { Estudiante } from '../service/estudiante';
 import {MatCardModule} from '@angular/material/card';
@@ -17,7 +17,7 @@ import { RouterModule } from '@angular/router';
   styleUrl: './lista-estudiante.css',
 })
 export class ListaEstudiante {
-  estudiantes: EstudianteModelo[] = [];
+  estudiantes = signal<EstudianteModelo[]>([]);
   errorMessage: string = '';
   
   constructor(private estudianteService: Estudiante){}
@@ -29,7 +29,7 @@ export class ListaEstudiante {
   cargarEstudiantes(): void{
     this.estudianteService.getEstudiante().subscribe({
       next: (data)=>{
-        this.estudiantes = data;
+        this.estudiantes.set(data);
         console.log(data);
       },
       error:(err)=>{

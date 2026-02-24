@@ -7,8 +7,8 @@
     {{ errorMessage }}
   </div>
   
-  <div class="lista-estudiante" *ngIf="estudiantes.length > 0">
-    <mat-card *ngFor="let p of estudiantes" class="card-estudiante">
+  <div class="lista-estudiante" *ngIf="estudiantes().length > 0">
+    <mat-card *ngFor="let p of estudiantes()" class="card-estudiante">
       <mat-card-header>
         <mat-card-title>{{ p.nombre }} {{ p.apellido }}</mat-card-title>
       </mat-card-header>
@@ -20,7 +20,7 @@
     
 </div>
 
-  <div *ngIf="estudiantes.length === 0 && !errorMessage">
+  <div *ngIf="estudiantes().length === 0 && !errorMessage">
     No hay estudiantes registrados
   </div>
 </div>
