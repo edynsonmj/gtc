@@ -1,0 +1,26 @@
+<div class="container">
+  <h2>Lista de estudiantes</h2>
+    
+  <button matButton="filled">Agregar estudiante</button> 
+
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+  
+  <div class="lista-estudiante" *ngIf="estudiantes.length > 0">
+    <mat-card *ngFor="let p of estudiantes" class="card-estudiante">
+      <mat-card-header>
+        <mat-card-title>{{ p.nombre }} {{ p.apellido }}</mat-card-title>
+      </mat-card-header>
+      
+      <mat-card-actions>
+        <button mat-button color="warn">ELIMINAR</button>
+      </mat-card-actions>
+    </mat-card>
+    
+</div>
+
+  <div *ngIf="estudiantes.length === 0 && !errorMessage">
+    No hay estudiantes registrados
+  </div>
+</div>

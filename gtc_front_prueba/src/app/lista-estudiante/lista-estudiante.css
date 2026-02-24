@@ -1,0 +1,22 @@
+.container {
+  padding: 20px;
+}
+
+.lista-estudiante {
+    padding-inline: 10%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
+.card-estudiante {
+  width: 300px;
+  margin-bottom: 16px;
+}
+
+.no-data {
+  text-align: center;
+  margin-top: 20px;
+  color: gray;
+}
