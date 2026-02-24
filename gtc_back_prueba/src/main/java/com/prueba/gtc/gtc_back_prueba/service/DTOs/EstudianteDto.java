@@ -17,5 +17,6 @@ public class EstudianteDto {
     private String nombre;
     @NotBlank(message = "obligatorio uso de apellido")
     private String apellido;
+    
     private Integer grupo;
 }

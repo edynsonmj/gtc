@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.prueba.gtc.gtc_back_prueba.configuration.exceptionController.exceptions.ErrorGenerico;
+import com.prueba.gtc.gtc_back_prueba.configuration.exceptionController.exceptions.InsercionFallidaExistente;
 import com.prueba.gtc.gtc_back_prueba.data.entities.EstudianteEntity;
 import com.prueba.gtc.gtc_back_prueba.data.projections.EstudianteResumen;
 import com.prueba.gtc.gtc_back_prueba.data.repositories.IEstudianteRepository;
@@ -60,9 +62,18 @@ public class EstudianteService{
      * @return estudiante insertado
      */
     public EstudianteDto agregarEstudiante(EstudianteDto nuevaData){
-        EstudianteEntity entidad = mapper.map(nuevaData, EstudianteEntity.class);
-        EstudianteEntity entidadAgregada = estudianteRepository.save(entidad);
-        return mapper.map(entidadAgregada, EstudianteDto.class);
+        
+        if(estudianteRepository.existsById(nuevaData.getId())){
+            throw new InsercionFallidaExistente();
+        }
+        try{
+            EstudianteEntity entidad = mapper.map(nuevaData, EstudianteEntity.class);
+            EstudianteEntity entidadAgregada = estudianteRepository.save(entidad);
+            return mapper.map(entidadAgregada, EstudianteDto.class);
+        }catch(Exception e){
+            throw new ErrorGenerico();
+        }
+        
     }
 
     /***
