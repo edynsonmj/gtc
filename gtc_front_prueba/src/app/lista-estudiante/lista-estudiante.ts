@@ -37,6 +37,21 @@ export class ListaEstudiante {
         console.log(err);
       }
     });
+  }
 
+  eliminarEstudiante(id: string): void {
+    if (confirm('¿Estás seguro de que deseas eliminar este estudiante?')) {
+      this.estudianteService.deleteEstudiante(id).subscribe({
+        next: () => {
+          // Actualizamos el Signal filtrando el estudiante eliminado
+          this.estudiantes.set(this.estudiantes().filter(est => est.id !== id));
+          console.log('Estudiante eliminado correctamente');
+        },
+        error: (err) => {
+          this.errorMessage = 'No se pudo eliminar al estudiante';
+          console.error(err);
+        }
+      });
+    }
   }
 }

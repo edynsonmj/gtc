@@ -18,4 +18,8 @@ export class Estudiante {
   postEstudiante(estudiante: EstudianteModelo): Observable<EstudianteModelo>{
     return this.http.post<EstudianteModelo>(this.apiUrl, estudiante);
   }
+  
+  deleteEstudiante(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
 }
